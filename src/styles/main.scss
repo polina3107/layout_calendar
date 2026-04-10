@@ -4,13 +4,13 @@ $day-size: 100px;
 $main-padding: 10px;
 $gap-size: 1px;
 $days-margins: (
-  'mon': 0,
-  'tue': $day-size + $gap-size,
-  'wed': 2 * $day-size + 2 * $gap-size,
-  'thu': 3 * $day-size + 3 * $gap-size,
-  'fri': 4 * $day-size + 4 * $gap-size,
-  'sat': 5 * $day-size + 5 * $gap-size,
-  'sun': 6 * $day-size + 6 * $gap-size,
+  'sun': 0,
+  'mon': $day-size + $gap-size,
+  'tue': 2 * $day-size + 2 * $gap-size,
+  'wed': 3 * $day-size + 3 * $gap-size,
+  'thu': 4 * $day-size + 4 * $gap-size,
+  'fri': 5 * $day-size + 5 * $gap-size,
+  'sat': 6 * $day-size + 6 * $gap-size,
 );
 
 body {
@@ -28,7 +28,7 @@ body {
   flex-wrap: wrap;
   gap: $gap-size;
   padding: $main-padding;
-  max-width: 7 * $day-size + 6 * $gap-size;
+  max-width: 7 * $day-size + 6 * $gap-size + 2 * $main-padding;
 
   &__day {
     background-color: $main-color;
@@ -41,7 +41,9 @@ body {
     &:hover {
       cursor: pointer;
       background-color: $hover-color;
-      transform: translateY(-20px);
+      transform: translateY(
+        -20px
+      ); // transition: transform 0.5s, background-color 0.5s;
     }
 
     @for $num from 1 through 31 {
@@ -56,7 +58,7 @@ body {
   }
 
   @each $day, $margin in $days-margins {
-    &--start-day-#{$day} :first-child {
+    &--start-day-#{$day} .claendar__day:first-child {
       margin-left: #{$margin};
     }
   }
